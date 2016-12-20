@@ -5,7 +5,7 @@ class Ball {
   float y = app.h/2;
   int xspeed = 3;
   int yspeed = 1;
-  int size = 20;
+  int radius = 10;
   float timer;
   float time = timer;
   float speedincrease = 0;
@@ -13,7 +13,8 @@ class Ball {
   boolean bounceYWallBottem = true;
 
   void draw() {
-    ellipse(x, y, size, size);
+    ellipseMode(RADIUS);
+    ellipse(this.x, this.y, this.radius, this.radius);
   }
 
   void timer() {
@@ -21,7 +22,7 @@ class Ball {
   }
 
   void bounceXWall() {
-    if (x >= app.w) {
+    if (x >= app.w - radius) {
       xspeed = -xspeed;
     }
 
@@ -29,19 +30,7 @@ class Ball {
       xspeed = -xspeed;
     }
   }
-
-  void bounceYWall() {
-    return;
-
-
-    //if (y >= app.h) {
-    //  yspeed = -yspeed;
-    //}
-    //if (y <= 0) {
-    //  yspeed = -yspeed;
-    //}
-  }
-
+  
   void paddleBounce() {
     this.paddleBounceX();
     this.paddleBounceY();
@@ -81,10 +70,9 @@ class Ball {
   }
 
   void run() {
-    draw();
-    bounceXWall();
-    bounceYWall();
     move();
+    bounceXWall();
+    draw();
     timer();
   }
 }

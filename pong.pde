@@ -71,17 +71,18 @@ class Application {
 
 void draw() {
   background(127);
-  myPlayer1.run();
-  myBall.run();
-  myPlayer2.run();
 
   if (!myBall.hasCollided(myPlayer1)) {
     if (!myBall.hasCollided(myPlayer2)) {
-      if(myBall.checkScored()) {
+      if (myBall.checkScored()) {
         myBall = new Ball();
       }
     }
   }
+
+  myBall.run();
+  myPlayer1.run();
+  myPlayer2.run();
 }
 
 

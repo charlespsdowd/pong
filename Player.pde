@@ -21,7 +21,7 @@ class Player {
   Player(Position position, int w, int h) {
     this.position = position;
     this.x = w/2;
-    switch(position) {
+    switch(this.position) {
     case top:
       this.y = this.height;
       this.left = 'j';
@@ -38,7 +38,7 @@ class Player {
   }
 
   void draw() {
-    rect(x, y, width, height);
+    rect(x, y, this.width, this.height);
   }
 
   float maxXpos(float by) {
@@ -54,30 +54,28 @@ class Player {
 
   void move() {
     if (keysIn.contains(this.left)) {
-      x = x - padlespeed;
+      this.x -= padlespeed;
     }
     if (keysIn.contains(this.right)) {
-      x = x + padlespeed;
+      this.x += padlespeed;
     }
   }
 
   boolean hasCollided(Ball ball) {
-    boolean result = false;
-    if (ball.y == (this.paddleHitY)) {
-      result = true;
-    }
-
-    if (result) {
-      if (ball.x >= this.x && ball.x <= (this.x + this.width)) {
-        return true;
+    boolean isOnLine = ((ball.x) >= this.x && (ball.x) <= (this.x + this.width));
+    if (isOnLine) {
+      switch(this.position) {
+      case top:
+        return (ball.y - ball.radius) == this.paddleHitY;
+      case bottom:
+        return (ball.y + ball.radius) == this.paddleHitY;
       }
     }
-
     return false;
   }
 
   void run() {
-    draw();
     move();
+    draw();
   }
 }

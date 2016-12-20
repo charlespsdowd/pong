@@ -23,4 +23,8 @@ class Court {
     this.netline = this.height / 2;
     this.serviceBox = this.netline / 2;
   }
+  
+  void run() {
+    
+  }
 }

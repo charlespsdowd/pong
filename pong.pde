@@ -4,6 +4,7 @@ ArrayList<Character> keysIn;
 Player myPlayer1;
 Player myPlayer2;
 Ball myBall;
+Court myCourt;
 
 enum TennisScore {
   love, fifteen, thirty, forty, duce, advantage, unadvantage, game

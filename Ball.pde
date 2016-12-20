@@ -62,7 +62,7 @@ class Ball {
   }
 
   boolean hasCollided(Player withPlayer) {
-    if (withPlayer.hasCollided(this)) {
+   if(withPlayer.hasCollided(this)) {
       this.paddleBounceY();
       return true;
     }

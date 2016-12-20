@@ -16,6 +16,7 @@ class Player {
   private Position position;
   private char left;
   private char right;
+  float paddleHitY = 0;
 
   Player(Position position, int w, int h) {
     this.position = position;
@@ -25,11 +26,13 @@ class Player {
       this.y = this.height;
       this.left = 'j';
       this.right = 'l';
+      this.paddleHitY = this.y + this.height;
       break;
     case bottom:
       this.y = h - this.height * 2;
       this.left = 'a';
       this.right = 'd';
+      this.paddleHitY = this.y;
       break;
     }
   }
@@ -60,17 +63,8 @@ class Player {
 
   boolean hasCollided(Ball ball) {
     boolean result = false;
-    switch(position) {
-    case top:
-      if (ball.y <= (this.y + 3*this.height/2)) {
-        result = true;
-      }
-      break;
-    case bottom:
-      if (ball.y >= this.y - ball.size/2) {
-        result = true;
-      }
-      break;
+    if (ball.y == (this.paddleHitY)) {
+      result = true;
     }
 
     if (result) {
